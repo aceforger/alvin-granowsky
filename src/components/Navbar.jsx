@@ -10,11 +10,11 @@ function Navbar() {
           active
           path="/bookshop"
         />
-        <NavItem 
+        {/* <NavItem 
           iconSrc="./images/ebook.gif" 
           text="eBook" 
           path="/ebooks"
-        />
+        /> */}
         {/* <NavItem 
           iconSrc="./images/audio-book.gif" 
           text="Audio Book" 

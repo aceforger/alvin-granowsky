@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaSearch, FaArrowUp, FaBook, FaBookOpen, FaStar } from "react-icons/fa";
+import { FaSearch, FaArrowUp, FaBook, FaBookOpen, FaStar, FaHeart, FaUsers, FaTrophy, FaHome } from "react-icons/fa";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // Simple reusable popup
@@ -57,6 +57,20 @@ function ScrollToTopButton() {
   );
 }
 
+// Helper function to scroll to element with offset
+const scrollToElementWithOffset = (elementId, offset = 80) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+};
+
 function Home() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -72,14 +86,6 @@ function Home() {
   const allBooks = [
     { id: '1', title: "Our Lives Together: Two Men in Love", type: "book", image: "/images/live-together.jpg", path: "/bookdetails/1", status: "available" },
     { id: '2', title: "Two Men in Love: The Crisis Year", type: "book", image: "/images/two-men.jpg", path: "/bookdetails/2", status: "available" },
-    { id: '3', title: "Teacher Accused: When Homophobia Explodes in a Texas Town", type: "book", image: "/images/teacher-accused.png", path: "/bookdetails/3", status: "available" },
-    { id: '4', title: "The Schoolteachers", type: "book", image: "/images/schoolteachers.png", path: "", status: "coming-soon" },
-    
-    // eBook versions
-    { id: '1', title: "Our Lives Together: Two Men in Love", type: "ebook", image: "/images/live-together", path: "/ebook/1", status: "available" },
-    { id: '2', title: "Two Men in Love: The Crisis Year", type: "ebook", image: "/images/two-mean", path: "/ebook/2", status: "available" },
-    { id: '3', title: "Teacher Accused: When Homophobia Explodes in a Texas Town", type: "ebook", image: "/images/teacher-accused.png", path: "/ebook/3", status: "available" },
-    { id: '4', title: "The Schoolteachers", type: "ebook", image: "/images/schoolteachers.png", path: "", status: "coming-soon" },
   ];
 
   useEffect(() => {
@@ -122,46 +128,30 @@ function Home() {
       <ScrollToTopButton />
 
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg z-[100] py-2 px-4 md:px-8 border-b border-gray-200">
+      <header className="fixed top-0 left-0 right-0 bg-white/100 backdrop-blur-sm shadow-lg z-[100] py-4 px-4 md:px-8 border-b border-gray-200">
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
           {/* Logo */}
-          <img
-            onClick={() => navigate("/")}
-            src="/images/davidlogo.png"
-            alt="Alvin Granowsky"
-            className="h-10 md:h-12 w-auto cursor-pointer hover:opacity-80 transition"
-          />
+          <div className="flex items-center space-x-4">
+              <img 
+                src="/images/alvinlogo.png" 
+                alt="David Michael Ruiz" 
+                className="h-10 w-10 rounded-full object-cover border-2 border-gray-200"
+              />
+              <h2 className="text-2xl font-bold text-gray-800 font-serif">
+                Alvin <span className="text-red-500">Granowsky</span>
+              </h2>
+            </div>
           
           {/* Navigation */}
           <div className="flex items-center gap-4 md:gap-6">
-            <button
-              onClick={() => {
-                const element = document.getElementById('featured-books');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="flex items-center gap-1.5 md:gap-2 text-gray-700 hover:text-sky-600 transition-colors group"
-            >
-              <img src="/images/book.gif" alt="Books" className="w-4 h-4 md:w-5 md:h-5" />
-              <span className="font-medium text-xs md:text-sm">Books</span>
-            </button>
-            
-            <button
-              onClick={() => {
-                const element = document.getElementById('ebooks-section');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="flex items-center gap-1.5 md:gap-2 text-gray-700 hover:text-sky-600 transition-colors group"
-            >
-              <img src="/images/ebook.gif" alt="EBooks" className="w-4 h-4 md:w-5 md:h-5" />
-              <span className="font-medium text-xs md:text-sm">EBooks</span>
-            </button>
+            {/* Navigation items removed for cleaner look */}
           </div>
 
           {/* Search Bar */}
           <div className="relative flex-1 max-w-md">
             <input
               type="text"
-              placeholder="Search books or ebooks..."
+              placeholder="Search books..."
               value={searchQuery}
               onChange={handleSearch}
               className="w-full border border-gray-300 rounded-full py-1.5 md:py-2 px-3 md:px-4 pr-8 md:pr-10 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent text-xs md:text-sm"
@@ -181,18 +171,9 @@ function Home() {
                     <div className="flex-1">
                       <p className="text-xs font-medium text-gray-800">{item.title}</p>
                       <div className="flex items-center gap-1.5">
-                        <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                          item.type === 'book' 
-                            ? 'bg-sky-100 text-sky-800' 
-                            : 'bg-sky-100 text-sky-800'
-                        }`}>
-                          {item.type === 'book' ? '📖 Book' : '📱 eBook'}
+                        <span className={`text-[10px] px-1.5 py-0.5 rounded-full bg-sky-100 text-sky-800`}>
+                          📖 Book
                         </span>
-                        {item.status === "coming-soon" && (
-                          <span className="text-[10px] bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded-full">
-                            Soon
-                          </span>
-                        )}
                       </div>
                     </div>
                   </div>
@@ -213,7 +194,7 @@ function Home() {
       <div className="pt-[60px] md:pt-[72px]">
         {/* Hero Section */}
         <div
-          className={`relative h-screen max-h-[700px] overflow-hidden transition-all duration-1000 ${
+          className={`relative h-screen max-h-[704px] overflow-hidden transition-all duration-1000 ${
             heroLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -268,26 +249,19 @@ function Home() {
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4">
                 <button
-                  onClick={() => {
-                    const element = document.getElementById('featured-books');
-                    element?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                  onClick={() => navigate(`/`)}
+                  className="group relative px-8 py-4 bg-gradient-to-r from-sky-500 to-sky-600 text-white rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 hover:scale-105"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    <FaHome /> Home
+                  </span>
+                </button>
+                <button
+                  onClick={() => scrollToElementWithOffset('featured-books', 70)}
                   className="group relative px-8 py-4 bg-gradient-to-r from-sky-500 to-sky-600 text-white rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-amber-500/30 hover:scale-105"
                 >
                   <span className="relative z-10 flex items-center gap-2">
                     <FaBook /> Browse Books
-                  </span>
-                </button>
-                
-                <button
-                  onClick={() => {
-                    const element = document.getElementById('ebooks-section');
-                    element?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="group relative px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-full font-semibold overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/30 hover:scale-105"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                    <FaBookOpen /> Explore EBooks
                   </span>
                 </button>
               </div>
@@ -295,7 +269,7 @@ function Home() {
               {/* Stats Bar */}
               <div className="mt-12 flex gap-8">
                 <div>
-                  <div className="text-3xl font-bold text-white">3+</div>
+                  <div className="text-3xl font-bold text-white">2</div>
                   <div className="text-sm text-gray-300">Book Titles</div>
                 </div>
                 <div>
@@ -314,154 +288,145 @@ function Home() {
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
         </div>
 
-        {/* Featured Books Section - Warm Theme */}
-        <section id="featured-books" className="py-12 px-4 bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100">
-          <div className="text-center mb-10">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <FaBook className="text-sky-600 text-3xl" />
-              <h2 className="text-3xl md:text-4xl font-bold font-serif text-gray-900">
-                Featured <span className="text-sky-600">Books</span>
+        {/* Featured Books Section - Compact Dual Book Showcase with Smaller Images */}
+        <section id="featured-books" className="py-12 px-4 bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50 scroll-mt-18">
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <FaBookOpen className="text-sky-600 text-2xl" />
+              <h2 className="text-2xl md:text-3xl font-bold font-serif text-gray-900">
+                Featured <span className="text-sky-600">Collection</span>
               </h2>
+              <FaBook className="text-sky-600 text-2xl" />
             </div>
-            <p className="text-sky-700 text-lg mb-3">📖 Physical copies for your collection</p>
-            <div className="w-24 h-1 bg-sky-600 mx-auto rounded-full"></div>
+            <p className="text-sky-700 text-base max-w-2xl mx-auto">
+              Discover the complete two-book series from Alvin Granowsky
+            </p>
+            <div className="w-24 h-0.5 bg-gradient-to-r from-sky-400 to-sky-600 mx-auto rounded-full mt-3"></div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {/* Book 1 - Our Lives Together */}
-            <div
-              onClick={() => navigate(`/bookdetails/1`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📖 Book
+          {/* Dual Book Showcase - Compact Layout with Smaller Images */}
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              {/* Book 1 - Our Lives Together */}
+              <div className="group relative">
+                <div className="relative rounded-xl overflow-hidden shadow-md cursor-pointer transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
+                  {/* Book Type Badge */}
+                  <div className="absolute top-3 left-3 z-30 bg-gradient-to-r from-sky-500 to-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg flex items-center gap-1">
+                    <FaBook className="text-[8px]" /> Physical
+                  </div>
+                  
+                  {/* Rating Badge */}
+                  <div className="absolute top-3 right-3 z-30 bg-amber-400 text-amber-900 text-[10px] px-1.5 py-1 rounded-full shadow-lg flex items-center gap-0.5 font-semibold">
+                    <FaStar className="text-[8px]" /> 4.8
+                  </div>
+                  
+                  {/* Image Container - Smaller height */}
+                  <div className="relative h-70 overflow-hidden bg-gradient-to-br from-sky-100 to-blue-100">
+                    <img
+                      src="/images/live-together.jpg"
+                      alt="Our Lives Together"
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 p-2"
+                    />
+                    {/* Subtle overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  
+                  {/* Book Details - Compact */}
+                  <div className="p-4 bg-white">
+                    <h3 className="text-lg font-bold text-gray-800 mb-0.5 font-serif">Our Lives Together</h3>
+                    <p className="text-sky-600 text-sm font-medium mb-2">Two Men in Love</p>
+                    
+                    {/* Short Description */}
+                    <p className="text-gray-600 text-xs mb-3 line-clamp-2">
+                      A heartfelt journey of two men navigating love, commitment, and the beautiful complexities of building a life together.
+                    </p>
+                    
+                    {/* Key Features - Smaller */}
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">📖 256 Pages</span>
+                      <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">❤️ Romance</span>
+                      <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">🏳️‍🌈 LGBTQ+</span>
+                    </div>
+                    
+                    {/* Action Button - Smaller */}
+                    <button
+                      onClick={() => navigate(`/bookdetails/1`)}
+                      className="w-full py-2 bg-gradient-to-r from-sky-500 to-sky-600 text-white rounded-lg font-semibold text-sm hover:from-sky-600 hover:to-sky-700 transition-all duration-300 transform hover:scale-[1.01] flex items-center justify-center gap-1.5 shadow-sm hover:shadow"
+                    >
+                      <FaBookOpen className="text-xs" /> Explore Book
+                    </button>
+                  </div>
+                </div>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif">Our Lives Together</h3>
-                <p className="text-sm text-gray-200">Two Men in Love</p>
+
+              {/* Book 2 - Two Men in Love: The Crisis Year */}
+              <div className="group relative">
+                <div className="relative rounded-xl overflow-hidden shadow-md cursor-pointer transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
+                  {/* Book Type Badge */}
+                  <div className="absolute top-3 left-3 z-30 bg-gradient-to-r from-sky-500 to-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg flex items-center gap-1">
+                    <FaBook className="text-[8px]" /> Physical
+                  </div>
+                  
+                  {/* Rating Badge */}
+                  <div className="absolute top-3 right-3 z-30 bg-amber-400 text-amber-900 text-[10px] px-1.5 py-1 rounded-full shadow-lg flex items-center gap-0.5 font-semibold">
+                    <FaStar className="text-[8px]" /> 4.9
+                  </div>
+                  
+                  {/* Image Container - Smaller height */}
+                  <div className="relative h-70 overflow-hidden bg-gradient-to-br from-sky-100 to-blue-100">
+                    <img
+                      src="/images/two-men.jpg"
+                      alt="Two Men in Love: The Crisis Year"
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 p-2"
+                    />
+                    {/* Subtle overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  
+                  {/* Book Details - Compact */}
+                  <div className="p-4 bg-white">
+                    <h3 className="text-lg font-bold text-gray-800 mb-0.5 font-serif">Two Men in Love</h3>
+                    <p className="text-sky-600 text-sm font-medium mb-2">The Crisis Year</p>
+                    
+                    {/* Short Description */}
+                    <p className="text-gray-600 text-xs mb-3 line-clamp-2">
+                      The gripping sequel that follows our protagonists through their most challenging year yet, testing the bonds of their love.
+                    </p>
+                    
+                    {/* Key Features - Smaller */}
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">📖 302 Pages</span>
+                      <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">💔 Drama</span>
+                      <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">🏳️‍🌈 LGBTQ+</span>
+                    </div>
+                    
+                    {/* Action Button - Smaller */}
+                    <button
+                      onClick={() => navigate(`/bookdetails/2`)}
+                      className="w-full py-2 bg-gradient-to-r from-sky-500 to-sky-600 text-white rounded-lg font-semibold text-sm hover:from-sky-600 hover:to-sky-700 transition-all duration-300 transform hover:scale-[1.01] flex items-center justify-center gap-1.5 shadow-sm hover:shadow"
+                    >
+                      <FaBookOpen className="text-xs" /> Explore Book
+                    </button>
+                  </div>
+                </div>
               </div>
-              <img
-                src="/images/live-together"
-                alt="Our Lives Together"
-                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
-              />
             </div>
 
-            {/* Book 2 - Two Men in Love: The Crisis Year */}
-            <div
-              onClick={() => navigate(`/bookdetails/2`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📖 Book
+            {/* Series Description Banner - Compact */}
+            <div className="mt-8 bg-gradient-to-r from-sky-100 to-blue-100 rounded-xl p-4 text-center shadow-sm">
+              <div className="flex items-center justify-center gap-2 mb-1">
+                <FaHeart className="text-rose-500 text-sm" />
+                <span className="font-semibold text-gray-700 text-sm">Complete Series</span>
+                <FaHeart className="text-rose-500 text-sm" />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif">Two Men in Love</h3>
-                <p className="text-sm text-gray-200">The Crisis Year</p>
+              <p className="text-gray-700 text-xs max-w-2xl mx-auto">
+                Experience the full emotional journey of love, resilience, and growth with both books in this acclaimed series. 
+                Perfect for readers who appreciate authentic LGBTQ+ romance.
+              </p>
+              <div className="flex items-center justify-center gap-4 mt-2 text-xs text-gray-600">
+                <span className="flex items-center gap-1"><FaUsers className="text-sky-500 text-xs" /> 500+ Readers</span>
+                <span className="flex items-center gap-1"><FaTrophy className="text-amber-500 text-xs" /> Bestseller</span>
               </div>
-              <img
-                src="/images/two-mean"
-                alt="Two Men in Love"
-                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
-              />
-            </div>
-
-            {/* Book 3 - Teacher Accused */}
-            <div
-              onClick={() => navigate(`/bookdetails/3`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📖 Book
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif">Teacher Accused</h3>
-                <p className="text-sm text-gray-200">When Homophobia Explodes in a Texas Town</p>
-              </div>
-              <img
-                src="/images/teacher-accused.png"
-                alt="Teacher Accused"
-                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* eBooks Section - Cool Purple Theme */}
-        <section id="ebooks-section" className="py-12 px-4 bg-gradient-to-br from-purple-50 via-indigo-50 to-purple-100">
-          <div className="text-center mb-10">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <FaBookOpen className="text-sky-600 text-3xl" />
-              <h2 className="text-3xl md:text-4xl font-bold font-serif text-gray-900">
-                Digital <span className="text-sky-600">EBooks</span>
-              </h2>
-            </div>
-            <p className="text-sky-700 text-lg mb-3">📱 Read anywhere, anytime</p>
-            <div className="w-24 h-1 bg-sky-600 mx-auto rounded-full"></div>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {/* eBook 1 - Our Lives Together */}
-            <div
-              onClick={() => navigate(`/ebook/1`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📱 eBook
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif">Our Lives Together</h3>
-                <p className="text-sm text-gray-200">Two Men in Love</p>
-              </div>
-              <img
-                src="/images/live-together"
-                alt="Our Lives Together eBook"
-                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
-              />
-            </div>
-
-            {/* eBook 2 - Two Men in Love: The Crisis Year */}
-            <div
-              onClick={() => navigate(`/ebook/2`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📱 eBook
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif">Two Men in Love</h3>
-                <p className="text-sm text-gray-200">The Crisis Year</p>
-              </div>
-              <img
-                src="/images/two-mean"
-                alt="Two Men in Love eBook"
-                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
-              />
-            </div>
-
-            {/* eBook 3 - Teacher Accused */}
-            <div
-              onClick={() => navigate(`/ebook/3`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📱 eBook
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif">Teacher Accused</h3>
-                <p className="text-sm text-gray-200">When Homophobia Explodes in a Texas Town</p>
-              </div>
-              <img
-                src="/images/teacher-accused.png"
-                alt="Teacher Accused eBook"
-                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
-              />
             </div>
           </div>
         </section>
@@ -471,7 +436,7 @@ function Home() {
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Brand */}
             <div>
-              <img onClick={() => navigate('/')} src="/images/davidlogo.png" alt="Alvin Granowsky" className="h-12 mb-4 rounded-2xl cursor-pointer" />
+              <img onClick={() => navigate('/')} src="/images/alvinlogo.png" alt="Alvin Granowsky" className="h-12 mb-4 rounded-2xl cursor-pointer" />
               <p className="text-gray-300">
                 Stories of love, justice, and resilience from Alvin Granowsky — teacher, author, and advocate.
               </p>
@@ -481,14 +446,7 @@ function Home() {
             <div>
               <h4 className="text-lg border-b font-semibold mb-4 text-white">Explore</h4>
               <ul className="space-y-2">
-                <li><button onClick={() => {
-                  const element = document.getElementById('featured-books');
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }} className="text-gray-300 hover:text-amber-300 transition-colors">📖 Books</button></li>
-                <li><button onClick={() => {
-                  const element = document.getElementById('ebooks-section');
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }} className="text-gray-300 hover:text-purple-300 transition-colors">📱 eBooks</button></li>
+                <li><button onClick={() => scrollToElementWithOffset('featured-books', 80)} className="text-gray-300 hover:text-amber-300 transition-colors">📖 Books</button></li>
               </ul>
             </div>
             
@@ -496,7 +454,6 @@ function Home() {
             <div>
               <h4 className="border-b text-lg font-semibold mb-4 text-white">Company</h4>
               <ul className="space-y-2">
-                <li><button onClick={() => navigate('/')} className="text-gray-300 hover:text-white transition-colors">About Us</button></li>
                 <li><button onClick={() => navigate('/contactus')} className="text-gray-300 hover:text-white transition-colors">Contact</button></li>
               </ul>
             </div>
@@ -505,7 +462,7 @@ function Home() {
             <div>
               <h4 className="border-b text-lg font-semibold mb-0 text-white">Connect</h4>
               <div className="flex gap-4 mb-4"></div>
-              <p className="text-gray-300 text-sm">alvin.granowsky@example.com</p>
+              <p className="text-gray-300 text-sm">algranowsky@hotmail.com</p>
             </div>
           </div>
           
