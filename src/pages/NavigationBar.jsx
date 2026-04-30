@@ -21,12 +21,12 @@ const NavigationBar = () => {
             {/* Updated: Add image alongside text */}
             <div className="flex items-center space-x-3">
               <img 
-                src="/images/davidlogo.png" 
+                src="/images/alvinlogo.png" 
                 alt="David Michael Ruiz" 
                 className="h-10 w-10 rounded-full object-cover border-2 border-gray-200"
               />
               <h2 className="text-2xl font-bold text-gray-800 font-serif">
-                David Michael <span className="text-red-500">Ruiz</span>
+                Alvin <span className="text-red-500">Granowsky</span>
               </h2>
             </div>
             
@@ -49,7 +49,7 @@ const NavigationBar = () => {
               >
                 <FaNewspaper className="inline mr-2" /> Press
               </button> */}
-              <button 
+              {/* <button 
                 onClick={() => scrollToSection('trailer')}
                 className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
               >
@@ -60,7 +60,7 @@ const NavigationBar = () => {
                 className="text-gray-700 hover:text-blue-600 transition-colors duration-300"
               >
                 <FaCalendarAlt className="inline mr-2" /> Events
-              </button>
+              </button> */}
               {/* <button 
                 onClick={() => scrollToSection('gallery')}
                 className="text-gray-700 hover:text-blue-600 transition-colors duration-300"

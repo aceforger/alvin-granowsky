@@ -102,7 +102,7 @@ function More() {
                   </div>
                   <div className="flex items-center gap-3 text-gray-600 bg-gray-50 p-3 rounded-xl">
                     <FaUsers className="text-indigo-600" />
-                    <span>Sister: <span className="font-semibold">Gerylin Martinez</span> (b. November 25, 1960)</span>
+                    <span>Sister: <span className="font-semibold">Gerylin Martinez</span> (b. November 28, 1960)</span>
                   </div>
                 </div>
               </div>

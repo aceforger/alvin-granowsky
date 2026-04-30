@@ -68,20 +68,18 @@ function Home() {
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
 
-  // Mock data for search
+  // Updated book data for Alvin Granowsky
   const allBooks = [
-    { id: '2', title: "The Heart of Jerim", type: "book", image: "/images/jerim.png", path: "/bookdetails/2" },
-    { id: '3', title: "The Heart of Always", type: "book", image: "/images/always.png", path: "/bookdetails/3" },
-    { id: '1', title: "The Heart of Tesfa", type: "book", image: "/images/tesfa.png", path: "/bookdetails/1" },
-    { id: '5', title: "The Hand of Peter", type: "book", image: "/images/peter.png", path: "", status: "coming-soon" },
-    { id: '6', title: "Touched by Angels", type: "book", image: "/images/angels.png", path: "", status: "coming-soon" },
-    { id: '4', title: "Out of Africa", type: "book", image: "/images/africa.png", path: "", status: "coming-soon" },
-    { id: '2', title: "The Heart of Jerim", type: "ebook", image: "/images/jerim.png", path: "/ebook/2" },
-    { id: '3', title: "The Heart of Always", type: "ebook", image: "/images/always.png", path: "/ebook/3" },
-    { id: '1', title: "The Heart of Tesfa", type: "ebook", image: "/images/tesfa.png", path: "/ebook/1" },
-    { id: '5', title: "The Hand of Peter", type: "ebook", image: "/images/peter.png", path: "", status: "coming-soon" },
-    { id: '6', title: "Touched by Angels", type: "ebook", image: "/images/angels.png", path: "", status: "coming-soon" },
-    { id: '4', title: "Out of Africa", type: "ebook", image: "/images/africa.png", path: "", status: "coming-soon" },
+    { id: '1', title: "Our Lives Together: Two Men in Love", type: "book", image: "/images/live-together.jpg", path: "/bookdetails/1", status: "available" },
+    { id: '2', title: "Two Men in Love: The Crisis Year", type: "book", image: "/images/two-men.jpg", path: "/bookdetails/2", status: "available" },
+    { id: '3', title: "Teacher Accused: When Homophobia Explodes in a Texas Town", type: "book", image: "/images/teacher-accused.png", path: "/bookdetails/3", status: "available" },
+    { id: '4', title: "The Schoolteachers", type: "book", image: "/images/schoolteachers.png", path: "", status: "coming-soon" },
+    
+    // eBook versions
+    { id: '1', title: "Our Lives Together: Two Men in Love", type: "ebook", image: "/images/live-together", path: "/ebook/1", status: "available" },
+    { id: '2', title: "Two Men in Love: The Crisis Year", type: "ebook", image: "/images/two-mean", path: "/ebook/2", status: "available" },
+    { id: '3', title: "Teacher Accused: When Homophobia Explodes in a Texas Town", type: "ebook", image: "/images/teacher-accused.png", path: "/ebook/3", status: "available" },
+    { id: '4', title: "The Schoolteachers", type: "ebook", image: "/images/schoolteachers.png", path: "", status: "coming-soon" },
   ];
 
   useEffect(() => {
@@ -130,7 +128,7 @@ function Home() {
           <img
             onClick={() => navigate("/")}
             src="/images/davidlogo.png"
-            alt="Dickson Lane"
+            alt="Alvin Granowsky"
             className="h-10 md:h-12 w-auto cursor-pointer hover:opacity-80 transition"
           />
           
@@ -263,9 +261,8 @@ function Home() {
               </h1>
               
               <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl leading-relaxed">
-                Explore our curated collection of{" "}
-                <span className="text-amber-300 font-semibold">books</span> and{" "}
-                <span className="text-purple-300 font-semibold">eBooks</span> that inspire, educate, and entertain.
+                Explore stories of love, resilience, and justice from{" "}
+                <span className="text-amber-300 font-semibold">Alvin Granowsky</span>
               </p>
               
               {/* CTA Buttons */}
@@ -298,15 +295,15 @@ function Home() {
               {/* Stats Bar */}
               <div className="mt-12 flex gap-8">
                 <div>
-                  <div className="text-3xl font-bold text-white">6+</div>
+                  <div className="text-3xl font-bold text-white">3+</div>
                   <div className="text-sm text-gray-300">Book Titles</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-white">10k+</div>
+                  <div className="text-3xl font-bold text-white">500+</div>
                   <div className="text-sm text-gray-300">Happy Readers</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-white">4.8</div>
+                  <div className="text-3xl font-bold text-white">4.7</div>
                   <div className="text-sm text-gray-300">Avg Rating</div>
                 </div>
               </div>
@@ -317,7 +314,7 @@ function Home() {
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
         </div>
 
-        {/* Featured Books Section - Warm Amber Theme */}
+        {/* Featured Books Section - Warm Theme */}
         <section id="featured-books" className="py-12 px-4 bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100">
           <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-3 mb-3">
@@ -330,149 +327,65 @@ function Home() {
             <div className="w-24 h-1 bg-sky-600 mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-            {/* Book 1 - Jerim (Available) */}
-            <div
-              onClick={() => navigate(`/bookdetails/2`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📖 Book
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-200/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">The Heart of Jerim</h3>
-              </div>
-              <img
-                src="/images/jerim.png"
-                alt="The Heart of Jerim"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
-              />
-              <img
-                src="/images/jerim.png"
-                alt="Preview"
-                className="absolute inset-0 h-4/5 w-auto m-auto opacity-0 group-hover:opacity-100 transition"
-              />
-            </div>
-
-            {/* Book 2 - Always (Available) */}
-            <div
-              onClick={() => navigate(`/bookdetails/3`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📖 Book
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-200/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">The Heart of Always</h3>
-              </div>
-              <img
-                src="/images/always.png"
-                alt="The Heart of Always"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
-              />
-              <img
-                src="/images/always.png"
-                alt="Preview"
-                className="absolute inset-0 h-4/5 w-auto m-auto opacity-0 group-hover:opacity-100 transition"
-              />
-            </div>
-
-            {/* Book 3 - Tesfa (Available) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Book 1 - Our Lives Together */}
             <div
               onClick={() => navigate(`/bookdetails/1`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
+              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
             >
               <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
                 📖 Book
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-200/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">The Heart of Tesfa</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
+                <h3 className="text-lg font-bold text-white mb-1 font-serif">Our Lives Together</h3>
+                <p className="text-sm text-gray-200">Two Men in Love</p>
               </div>
               <img
-                src="/images/tesfa.png"
-                alt="The Heart of Tesfa"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
-              />
-              <img
-                src="/images/tesfa.png"
-                alt="Preview"
-                className="absolute inset-0 h-4/5 w-auto m-auto opacity-0 group-hover:opacity-100 transition"
+                src="/images/live-together"
+                alt="Our Lives Together"
+                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
               />
             </div>
 
-            {/* Book 4 - Peter (Coming Soon) */}
+            {/* Book 2 - Two Men in Love: The Crisis Year */}
             <div
-              onClick={() => setShowPopup(true)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400 opacity-80"
+              onClick={() => navigate(`/bookdetails/2`)}
+              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
             >
               <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
                 📖 Book
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-200/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">The Hand of Peter</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
+                <h3 className="text-lg font-bold text-white mb-1 font-serif">Two Men in Love</h3>
+                <p className="text-sm text-gray-200">The Crisis Year</p>
               </div>
               <img
-                src="/images/peter.png"
-                alt="The Hand of Peter"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
+                src="/images/two-mean"
+                alt="Two Men in Love"
+                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="bg-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full transform rotate-[-10deg] shadow-lg z-30">
-                  Coming Soon
-                </span>
-              </div>
             </div>
 
-            {/* Book 5 - Angels (Coming Soon) */}
+            {/* Book 3 - Teacher Accused */}
             <div
-              onClick={() => setShowPopup(true)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400 opacity-80"
+              onClick={() => navigate(`/bookdetails/3`)}
+              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
             >
               <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
                 📖 Book
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-200/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">Touched by Angels</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
+                <h3 className="text-lg font-bold text-white mb-1 font-serif">Teacher Accused</h3>
+                <p className="text-sm text-gray-200">When Homophobia Explodes in a Texas Town</p>
               </div>
               <img
-                src="/images/angels.png"
-                alt="Touched by Angels"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
+                src="/images/teacher-accused.png"
+                alt="Teacher Accused"
+                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="bg-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full transform rotate-[-10deg] shadow-lg z-30">
-                  Coming Soon
-                </span>
-              </div>
-            </div>
-
-            {/* Book 6 - Africa (Coming Soon) */}
-            <div
-              onClick={() => setShowPopup(true)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400 opacity-80"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📖 Book
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-200/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">Out of Africa</h3>
-              </div>
-              <img
-                src="/images/africa.png"
-                alt="Out of Africa"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="bg-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full transform rotate-[-10deg] shadow-lg z-30">
-                  Coming Soon
-                </span>
-              </div>
             </div>
           </div>
         </section>
@@ -490,149 +403,65 @@ function Home() {
             <div className="w-24 h-1 bg-sky-600 mx-auto rounded-full"></div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
-            {/* eBook 1 - Jerim (Available) */}
-            <div
-              onClick={() => navigate(`/ebook/2`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📱 eBook
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-900/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">The Heart of Jerim</h3>
-              </div>
-              <img
-                src="/images/jerim.png"
-                alt="The Heart of Jerim eBook"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
-              />
-              <img
-                src="/images/jerim.png"
-                alt="Preview"
-                className="absolute inset-0 h-4/5 w-auto m-auto opacity-0 group-hover:opacity-100 transition"
-              />
-            </div>
-
-            {/* eBook 2 - Always (Available) */}
-            <div
-              onClick={() => navigate(`/ebook/3`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📱 eBook
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-900/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">The Heart of Always</h3>
-              </div>
-              <img
-                src="/images/always.png"
-                alt="The Heart of Always eBook"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
-              />
-              <img
-                src="/images/always.png"
-                alt="Preview"
-                className="absolute inset-0 h-4/5 w-auto m-auto opacity-0 group-hover:opacity-100 transition"
-              />
-            </div>
-
-            {/* eBook 3 - Tesfa (Available) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* eBook 1 - Our Lives Together */}
             <div
               onClick={() => navigate(`/ebook/1`)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
+              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
             >
               <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
                 📱 eBook
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-900/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">The Heart of Tesfa</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
+                <h3 className="text-lg font-bold text-white mb-1 font-serif">Our Lives Together</h3>
+                <p className="text-sm text-gray-200">Two Men in Love</p>
               </div>
               <img
-                src="/images/tesfa.png"
-                alt="The Heart of Tesfa eBook"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
-              />
-              <img
-                src="/images/tesfa.png"
-                alt="Preview"
-                className="absolute inset-0 h-4/5 w-auto m-auto opacity-0 group-hover:opacity-100 transition"
+                src="/images/live-together"
+                alt="Our Lives Together eBook"
+                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
               />
             </div>
 
-            {/* eBook 4 - Peter (Coming Soon) */}
+            {/* eBook 2 - Two Men in Love: The Crisis Year */}
             <div
-              onClick={() => setShowPopup(true)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400 opacity-80"
+              onClick={() => navigate(`/ebook/2`)}
+              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
             >
               <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
                 📱 eBook
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-900/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">The Hand of Peter</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
+                <h3 className="text-lg font-bold text-white mb-1 font-serif">Two Men in Love</h3>
+                <p className="text-sm text-gray-200">The Crisis Year</p>
               </div>
               <img
-                src="/images/peter.png"
-                alt="The Hand of Peter eBook"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
+                src="/images/two-mean"
+                alt="Two Men in Love eBook"
+                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="bg-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full transform rotate-[-10deg] shadow-lg z-30">
-                  Coming Soon
-                </span>
-              </div>
             </div>
 
-            {/* eBook 5 - Angels (Coming Soon) */}
+            {/* eBook 3 - Teacher Accused */}
             <div
-              onClick={() => setShowPopup(true)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400 opacity-80"
+              onClick={() => navigate(`/ebook/3`)}
+              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-[400px] bg-sky-50 border-2 border-sky-200 hover:border-sky-400"
             >
               <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
                 📱 eBook
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-900/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">Touched by Angels</h3>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+              <div className="absolute bottom-0 left-0 p-4 z-20 w-full">
+                <h3 className="text-lg font-bold text-white mb-1 font-serif">Teacher Accused</h3>
+                <p className="text-sm text-gray-200">When Homophobia Explodes in a Texas Town</p>
               </div>
               <img
-                src="/images/angels.png"
-                alt="Touched by Angels eBook"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
+                src="/images/teacher-accused.png"
+                alt="Teacher Accused eBook"
+                className="absolute inset-0 w-full h-full object-cover p-0 group-hover:scale-105 transition duration-500"
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="bg-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full transform rotate-[-10deg] shadow-lg z-30">
-                  Coming Soon
-                </span>
-              </div>
-            </div>
-
-            {/* eBook 6 - Africa (Coming Soon) */}
-            <div
-              onClick={() => setShowPopup(true)}
-              className="group relative rounded-xl overflow-hidden shadow-md cursor-pointer hover:-translate-y-2 transition-all h-64 bg-sky-50 border-2 border-sky-200 hover:border-sky-400 opacity-80"
-            >
-              <div className="absolute top-2 right-2 z-30 bg-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg">
-                📱 eBook
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-sky-900/70 to-transparent z-10"></div>
-              <div className="absolute bottom-0 left-0 p-3 z-20">
-                <h3 className="text-lg font-bold text-white mb-1 font-serif line-clamp-2">Out of Africa</h3>
-              </div>
-              <img
-                src="/images/africa.png"
-                alt="Out of Africa eBook"
-                className="absolute inset-0 w-full h-full object-contain p-2 group-hover:opacity-0 transition"
-              />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="bg-sky-500 text-white text-xs font-bold px-3 py-1.5 rounded-full transform rotate-[-10deg] shadow-lg z-30">
-                  Coming Soon
-                </span>
-              </div>
             </div>
           </div>
         </section>
@@ -642,9 +471,9 @@ function Home() {
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
             {/* Brand */}
             <div>
-              <img onClick={() => navigate('/')} src="/images/davidlogo.png" alt="Dickson Lane" className="h-12 mb-4 rounded-2xl cursor-pointer" />
+              <img onClick={() => navigate('/')} src="/images/davidlogo.png" alt="Alvin Granowsky" className="h-12 mb-4 rounded-2xl cursor-pointer" />
               <p className="text-gray-300">
-                Your premier destination for remarkable books and unforgettable reading moments, welcoming readers since 2025.
+                Stories of love, justice, and resilience from Alvin Granowsky — teacher, author, and advocate.
               </p>
             </div>
             
@@ -676,13 +505,13 @@ function Home() {
             <div>
               <h4 className="border-b text-lg font-semibold mb-0 text-white">Connect</h4>
               <div className="flex gap-4 mb-4"></div>
-              <p className="text-gray-300 text-sm">authordavidmichaelruiz@gmail.com</p>
+              <p className="text-gray-300 text-sm">alvin.granowsky@example.com</p>
             </div>
           </div>
           
           {/* Bottom bar */}
           <div className="border-t border-blue-700 mt-10 pt-5 text-center text-gray-400 text-sm">
-            <p>© {new Date().getFullYear()} David Michael Ruiz. All rights reserved. | Site by 411socials LLC</p>
+            <p>© {new Date().getFullYear()} Alvin Granowsky. All rights reserved.</p>
           </div>
         </footer>
       </div>

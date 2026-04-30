@@ -30,7 +30,7 @@ function AboutMe() {
         {/* Background image */}
         <div className="absolute inset-0 bg-black mt-10">
           <img 
-            src="/images/home.png" 
+            src="/images/alvin.png" 
             alt="David Michael Ruiz" 
             className="w-full h-full object-contain object-center"
           />
@@ -53,114 +53,82 @@ function AboutMe() {
             </span>
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Author, Educator, and Literary Visionary bridging timeless wisdom with contemporary storytelling
+            Teacher, Author, and Advocate — Telling Stories That Matter
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start mb-28">
           <div className="relative mt-20">
             <div className="relative rounded-xl overflow-hidden shadow-2xl">
               <img 
-                src="/images/david.png" 
-                alt="David Michael Ruiz" 
+                src="/images/profile.png" 
+                alt="Alvin Granowsky" 
                 className="w-full h-auto object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
             <div className="absolute -z-10 -bottom-8 -right-8 w-3/4 h-3/4 border-4 border-orange-400 rounded-xl"></div>
           </div>
-          
+
           <div className="pt-0">
             <h2 className="text-3xl font-serif text-gray-800 mb-8">
               The Story Behind the Words
             </h2>
-            
+
             <div className="space-y-3">
               <p className="text-lg leading-relaxed text-gray-600">
-              Architect of Worlds
+                <strong className="text-gray-800">A Late Start, A Lasting Voice</strong><br />
+                Alvin Granowsky spent his twenties teaching and writing novels that never found their audience. His first published novel, <em>The Schoolteachers</em>, arrived as he approached thirty — only to fade quickly from view.
               </p>
+
               <p className="text-lg leading-relaxed text-gray-600">
-               David Michael Ruiz is a visionary storyteller dedicated to the art of high-stakes world-building. Specializing in Epic Fantasy and speculative fiction, Ruiz has carved out a distinct space in the literary landscape with narratives that challenge the boundaries of imagination. His work is characterized by intricate lore, high-tension conflict, and characters who find their strength at the intersection of duty and desperation.
+                That disappointment led him to give up fiction and pursue a doctorate in education at the University of Pennsylvania. There, he connected with a mentor who invited him to co-write a new reading series. <em>The Bookshops</em> — sixty paperback books for primary grades — became his first major success and launched a long career writing readers and textbooks for the school market.
               </p>
-              
+
               <p className="text-lg leading-relaxed text-gray-600">
-                The Art of the Epic
+                <strong className="text-gray-800">A Career in Education</strong><br />
+                Granowsky went on to serve as Director of Reading/Language Arts for the public schools of Greensboro, NC, and Dallas, TX, and later as Vice President of Education for World Book Encyclopedia. Yet his greatest joy — aside from raising his three children — came from the many children’s books he authored.
               </p>
+
               <p className="text-lg leading-relaxed text-gray-600">
-                Ruiz’s writing is defined by its atmospheric depth and structural complexity. In his standout work, The Heart of Jerim, he demonstrates a keen ability to construct expansive, living worlds that feel both ancient and immediate. His storytelling style focuses on:
+                <strong className="text-gray-800">Returning to the Heart of Storytelling</strong><br />
+                In 2009, largely retired, Granowsky returned to where he began: writing novels. <em>Teacher Accused: When Homophobia Explodes in a Texas Town</em> was published, bringing back all the excitement he first felt decades ago.
               </p>
+
               <p className="text-lg leading-relaxed text-gray-600">
-                The Heroic Internal: Exploring the psychological weight of destiny on the individual.
+                <strong className="text-gray-800">A Story That Demanded More</strong><br />
+                Four years later (2014), the sequel — <em>Our Lives Together: Two Men in Love</em> — was published, written in direct response to readers who wanted to know what happened to Glen and Keith, the two men at the heart of the story.
               </p>
+
               <p className="text-lg leading-relaxed text-gray-600">
-                Systemic Lore: Designing unique magical or societal structures that drive the plot.
-              </p>
-              <p className="text-lg leading-relaxed text-gray-600">
-                Cinematic Pacing: Balancing grand, sweeping action with intimate, character-driven moments.
-              </p>
-              <p className="text-lg leading-relaxed text-gray-600">
-                Philosophical Foundations
-              </p>
-              <p className="text-lg leading-relaxed text-gray-600">
-                At the core of Ruiz’s bibliography is a fascination with the "Trial"—the moment a character is forced to outgrow their former self to survive a changing world. Whether navigating the halls of the Weapons Guild or the far reaches of speculative futures, his protagonists are defined not by their powers, but by their choices. This philosophical grounding elevates his work from standard genre fiction to a profound exploration of human (and superhuman) resilience.
-              </p>
-              <p className="text-lg leading-relaxed text-gray-600">
-                A Growing Literary Footprint
-              </p>
-              <p className="text-lg leading-relaxed text-gray-600">
-                With a library of work available globally on Amazon, David Michael Ruiz has built a loyal following of readers who crave immersive escapism paired with intellectual substance. As he continues to expand the Heart saga and explore new narrative horizons, Ruiz remains a vital voice for those seeking stories that are as vast as the stars and as intimate as the human heart.
+                <strong className="text-gray-800">Beyond the Page</strong><br />
+                Alvin Granowsky has been a teacher and consultant to schools across the nation, as well as a consultant to the National PTA. He is deeply concerned with the homophobia plaguing our nation and the bullying that often targets young people perceived to be gay. A father of three, Alvin lives in Dallas, Texas, where he continues to write stories that speak to the heart of justice, love, and resilience.
               </p>
             </div>
           </div>
         </div>
-        
-        {/* <div className="grid grid-cols-1 sm:grid-cols-2 max-w-screen lg:grid-cols-4 gap-6 mt-8">
-          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-            <FaBookOpen className="text-3xl text-blue-500 mb-4" />
-            <h3 className="text-xl font-medium text-gray-800 mb-2">Published Works</h3>
-            <p className="text-gray-600">6 books</p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-            <FaBookOpen className="text-3xl text-orange-500 mb-4" />
-            <h3 className="text-xl font-medium text-gray-800 mb-2">Education</h3>
-            <p className="text-gray-600">Webber-Douglas Academy of Dramatic Art in London, BA in English and Theatre Arts from Catawba College</p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-            <FaBookOpen className="text-3xl text-orange-500 mb-4" />
-            <h3 className="text-xl font-medium text-gray-800 mb-2">Writing Style</h3>
-            <p className="text-gray-600">Literary fiction with historical depth</p>
-          </div>
-          
-          <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2">
-            <FaBookOpen className="text-3xl text-orange-500 mb-4" />
-            <h3 className="text-xl font-medium text-gray-800 mb-2">Awards</h3>
-            <p className="text-gray-600">3-time Booker Prize nominee</p>
-          </div>
-        </div> */}
       </div>
 
       {/* Press Release Section */}
       {/* <PressRelease /> */}
 
       {/* Book Trailer Section */}
-      <BookTrailer />
+      {/* <BookTrailer /> */}
 
       {/* Events Section */}
-      <Events />
+      {/* <Events /> */}
 
       {/* Gallery Section */}
       {/* <ImageGallery /> */}
 
       {/* Floating CTA Button */}
       <div className="fixed bottom-8 right-8 flex flex-col gap-4 z-50">
-      <button 
+      {/* <button 
         onClick={() => navigate('/more-about-david')}
         className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full px-6 py-3 shadow-xl flex items-center gap-3 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1"
       >
         <FaBookOpen size={18} />
         <span>Explore More</span>
-      </button>
+      </button> */}
 
       <button 
         onClick={() => navigate('/home')}
