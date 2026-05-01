@@ -98,10 +98,10 @@ export default function ContactUs() {
     formDataToSend.append('phone', formData.phone);
     formDataToSend.append('subject', formData.subject);
     formDataToSend.append('message', formData.message);
-    formDataToSend.append('_honeypot', '');
+    formDataToSend.append('_honeypot', honeypot);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/support@411socials.space', {
+      const response = await fetch('https://formsubmit.co/ajax/algranowsky@hotmail.com', {
         method: 'POST',
         body: formDataToSend,
       });
@@ -155,29 +155,10 @@ export default function ContactUs() {
                 </div>
                 <div className="ml-4">
                   <p className="font-semibold">Email</p>
-                  <p className="text-blue-200">support@411socials.space</p>
+                  <p className="text-blue-200">algranowsky@hotmail.com</p>
                 </div>
               </div>
               
-              <div className="flex items-start">
-                <div className="flex-shrink-0 bg-blue-500 p-3 rounded-lg">
-                  <FaClock className="w-5 h-5" />
-                </div>
-                <div className="ml-4">
-                  <p className="font-semibold">Response Time</p>
-                  <p className="text-blue-200">Typically within 24 hours</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start">
-                <div className="flex-shrink-0 bg-blue-500 p-3 rounded-lg">
-                  <FaMapMarkerAlt className="w-5 h-5" />
-                </div>
-                <div className="ml-4">
-                  <p className="font-semibold">Based In</p>
-                  <p className="text-blue-200">United States</p>
-                </div>
-              </div>
             </div>
             
             <div className="mt-12 pt-8 border-t border-blue-500 relative z-10">
@@ -373,7 +354,7 @@ export default function ContactUs() {
         </div>
 
         <div className="mt-16 text-center text-gray-500 text-sm">
-          <p>© {new Date().getFullYear()} Dickson Lane. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Alvin Granowsky. All rights reserved.</p>
         </div>
       </div>
     </div>

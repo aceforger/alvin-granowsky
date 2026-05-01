@@ -84,8 +84,8 @@ function Home() {
 
   // Updated book data for Alvin Granowsky
   const allBooks = [
-    { id: '1', title: "Our Lives Together: Two Men in Love", type: "book", image: "/images/live-together.jpg", path: "/bookdetails/1", status: "available" },
-    { id: '2', title: "Two Men in Love: The Crisis Year", type: "book", image: "/images/two-men.jpg", path: "/bookdetails/2", status: "available" },
+    { id: '1', title: "Our Lives Together: Two Men in Love", type: "book", image: "/images/live-together.png", path: "/bookdetails/1", status: "available" },
+    { id: '2', title: "Two Men in Love: The Crisis Year", type: "book", image: "/images/two-men.png", path: "/bookdetails/2", status: "available" },
   ];
 
   useEffect(() => {
@@ -323,7 +323,7 @@ function Home() {
                   {/* Image Container - Smaller height */}
                   <div className="relative h-70 overflow-hidden bg-gradient-to-br from-sky-100 to-blue-100">
                     <img
-                      src="/images/live-together.jpg"
+                      src="/images/live-together.png"
                       alt="Our Lives Together"
                       className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 p-2"
                     />
@@ -375,7 +375,7 @@ function Home() {
                   {/* Image Container - Smaller height */}
                   <div className="relative h-70 overflow-hidden bg-gradient-to-br from-sky-100 to-blue-100">
                     <img
-                      src="/images/two-men.jpg"
+                      src="/images/two-men.png"
                       alt="Two Men in Love: The Crisis Year"
                       className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 p-2"
                     />

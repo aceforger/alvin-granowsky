@@ -8,7 +8,7 @@ const mockBooks = [
     id: '1', 
     title: 'Our Lives Together: Two Men in Love', 
     author: 'ALVIN GRANOWSKY', 
-    image: '/images/live-together.jpg', 
+    image: '/images/live-together.png', 
     description: `Glen McLean and Keith Chamberlain have lived together for four years. Their love for each other is solid, or so it seems until Katie Collins returns to their small town outside of Dallas. Her marriage is ending and she is pregnant — possibly by Glen through a procedure at a fertility clinic, she says.
 
 Keith doesn't buy it. He believes that her pregnancy is the result of a sexual encounter with Glen, and he is consumed with jealousy and the fear that Katie has returned to take Glen from him.
@@ -38,7 +38,7 @@ Katie's aunt is an ardent supporter of Reverend Phillips in his unrelenting cond
     id: '2', 
     title: 'Two Men in Love: The Crisis Year', 
     author: 'ALVIN GRANOWSKY', 
-    image: '/images/two-men.jpg', 
+    image: '/images/two-men.png', 
     description: `Two Men in Love: The Crisis Year is the third novel in a trilogy depicting the lives of two men in love in a conservative town outside of Dallas, TX. Supreme Court decisions supportive of homosexual men and women, along with increasing public acceptance of LGBT people, collide with conservative traditions and religious beliefs, giving rise to a backlash against the "homosexual agenda" and the "limiting of religious freedom."
 
 It is 2015, the year the Supreme Court rules for gay marriage equality. Because they have lived together for eleven years and have two young sons, family and friends anticipate that Glen and Keith will marry. But Keith has been secretly having sexual contact with another man, and when confronted insists he wants an open relationship. All that they have built — family, home and love for each other — is at risk as Glen, stunned by his partner's infidelity, finds comfort — and love — in the arms of another.
