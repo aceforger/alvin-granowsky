@@ -23,8 +23,8 @@ Katie's aunt is an ardent supporter of Reverend Phillips in his unrelenting cond
       { title: 'The Teacher Accused Trilogy', link: 'Learn More >' },
     ],
     purchaseLinks: {
-      amazon: 'https://www.amazon.ca/Our-Lives-Together-Two-Love/dp/149172806X',
-      desertcart:'https://www.desertcart.in/products/8581476-our-lives-together-two-men-in-love-paperback-march-18',
+      amazon: '',
+      desertcart:'',
     },
     details: {
       publisher: 'Alvin Granowsky',
@@ -51,9 +51,9 @@ In a secondary theme, Ellen Thatcher, a school board member and mother of a gay 
       { title: 'The Teacher Accused Trilogy', link: 'Learn More >' },
     ],
     purchaseLinks: {
-      amazon: 'https://www.amazon.ca/Two-Men-Love-Alvin-Granowsky/dp/B0GVQMJTB4/ref=sr_1_1?crid=3H7Z9GTPVWROQ&dib=eyJ2IjoiMSJ9.uvmpPHNTRMl4LaWjkzol_J_nTh6Oo-D4cAVInX0w62xburR4_hHnxtr6SrNjWd88HKeIX0_lP8qVUpXoy3Wpe-AP6F8yfJGh-XGjBQPyg7g.pmBL5PYTV5-l63VOZSgLz8s6muFEdVrQLglThAKL_7k&dib_tag=se&keywords=two+men+in+love+by+alvin&qid=1777574331&sprefix=two+men+in+love+by+alvi%2Caps%2C373&sr=8-1',
+      amazon: '',
       barnesAndNoble: 'https://www.barnesandnoble.com/w/two-men-in-love-alvin-granowsky/1149817983',
-      walmart: 'https://www.walmart.com/ip/Our-Lives-Together-Two-Men-in-Love-Paperback-Alvin-Granowsky-9781491728062/39965278',
+      walmart: '',
 
       
     },
