@@ -3,13 +3,13 @@ import { FaSearch, FaArrowUp, FaBook, FaBookOpen, FaStar, FaHeart, FaUsers, FaTr
 import { useNavigate, useLocation } from "react-router-dom";
 
 // Simple reusable popup
-function Popup({ onClose }) {
+function Popup({ onClose, bookTitle }) {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50">
       <div className="bg-white px-6 py-4 rounded-lg shadow-lg w-[240px] text-center">
         <h2 className="text-lg font-semibold text-gray-800 mb-2">Coming Soon 🚀</h2>
         <p className="text-gray-600 mb-3 text-sm leading-snug">
-          This book is not available yet. Stay tuned!
+          "{bookTitle}" is not available yet. Stay tuned!
         </p>
         <button
           onClick={onClose}
@@ -76,15 +76,15 @@ function Home() {
   const location = useLocation();
 
   const [showPopup, setShowPopup] = useState(false);
-  const [setPopupBook] = useState(null);
+  const [popupBookTitle, setPopupBookTitle] = useState("");
   const [heroLoaded, setHeroLoaded] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
 
-  // Updated book data for Alvin Granowsky
+  // Updated book data - First book is coming soon, second is available
   const allBooks = [
-    { id: '1', title: "Our Lives Together: Two Men in Love", type: "book", image: "/images/live-together.png", path: "/bookdetails/1", status: "available" },
+    { id: '1', title: "Our Lives Together: Two Men in Love", type: "book", image: "/images/live-together.png", path: "/bookdetails/1", status: "coming-soon" },
     { id: '2', title: "Two Men in Love: The Crisis Year", type: "book", image: "/images/two-men.png", path: "/bookdetails/2", status: "available" },
   ];
 
@@ -115,10 +115,19 @@ function Home() {
     setSearchQuery("");
     
     if (item.status === "coming-soon" || item.path === "") {
-      setPopupBook(item.title);
+      setPopupBookTitle(item.title);
       setShowPopup(true);
     } else {
       navigate(item.path);
+    }
+  };
+
+  const handleBookClick = (book) => {
+    if (book.status === "coming-soon") {
+      setPopupBookTitle(book.title);
+      setShowPopup(true);
+    } else {
+      navigate(book.path);
     }
   };
 
@@ -171,8 +180,8 @@ function Home() {
                     <div className="flex-1">
                       <p className="text-xs font-medium text-gray-800">{item.title}</p>
                       <div className="flex items-center gap-1.5">
-                        <span className={`text-[10px] px-1.5 py-0.5 rounded-full bg-sky-100 text-sky-800`}>
-                          📖 Book
+                        <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${item.status === 'coming-soon' ? 'bg-amber-100 text-amber-800' : 'bg-sky-100 text-sky-800'}`}>
+                          {item.status === 'coming-soon' ? '🔜 Coming Soon' : '📖 Book'}
                         </span>
                       </div>
                     </div>
@@ -307,26 +316,32 @@ function Home() {
           {/* Dual Book Showcase - Compact Layout with Smaller Images */}
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-              {/* Book 1 - Our Lives Together */}
+              {/* Book 1 - Our Lives Together (Coming Soon) */}
               <div className="group relative">
                 <div className="relative rounded-xl overflow-hidden shadow-md cursor-pointer transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
                   {/* Book Type Badge */}
-                  <div className="absolute top-3 left-3 z-30 bg-gradient-to-r from-sky-500 to-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg flex items-center gap-1">
-                    <FaBook className="text-[8px]" /> Physical
+                  <div className="absolute top-3 left-3 z-30 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg flex items-center gap-1">
+                    <FaBook className="text-[8px]" /> Coming Soon
                   </div>
                   
-                  {/* Rating Badge */}
-                  <div className="absolute top-3 right-3 z-30 bg-amber-400 text-amber-900 text-[10px] px-1.5 py-1 rounded-full shadow-lg flex items-center gap-0.5 font-semibold">
-                    <FaStar className="text-[8px]" /> 4.8
+                  {/* Rating Badge - Disabled for coming soon */}
+                  <div className="absolute top-3 right-3 z-30 bg-gray-400 text-gray-800 text-[10px] px-1.5 py-1 rounded-full shadow-lg flex items-center gap-0.5 font-semibold">
+                    <FaStar className="text-[8px]" /> TBA
                   </div>
                   
                   {/* Image Container - Smaller height */}
-                  <div className="relative h-70 overflow-hidden bg-gradient-to-br from-sky-100 to-blue-100">
+                  <div className="relative h-70 overflow-hidden bg-gradient-to-br from-amber-50 to-yellow-50">
                     <img
                       src="/images/live-together.png"
                       alt="Our Lives Together"
-                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 p-2"
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105 p-2 opacity-75"
                     />
+                    {/* Coming Soon Overlay */}
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                      <div className="bg-amber-500 text-white px-4 py-2 rounded-full font-bold text-sm transform -rotate-12 shadow-lg">
+                        Coming Soon
+                      </div>
+                    </div>
                     {/* Subtle overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
@@ -343,28 +358,28 @@ function Home() {
                     
                     {/* Key Features - Smaller */}
                     <div className="flex flex-wrap gap-2 mb-3">
-                      <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">📖 256 Pages</span>
+                      <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">📖 TBA Pages</span>
                       <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">❤️ Romance</span>
                       <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">🏳️‍🌈 LGBTQ+</span>
                     </div>
                     
-                    {/* Action Button - Smaller */}
+                    {/* Action Button - Disabled for Coming Soon */}
                     <button
-                      onClick={() => navigate(`/bookdetails/1`)}
-                      className="w-full py-2 bg-gradient-to-r from-sky-500 to-sky-600 text-white rounded-lg font-semibold text-sm hover:from-sky-600 hover:to-sky-700 transition-all duration-300 transform hover:scale-[1.01] flex items-center justify-center gap-1.5 shadow-sm hover:shadow"
+                      onClick={() => handleBookClick(allBooks[0])}
+                      className="w-full py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg font-semibold text-sm hover:from-amber-600 hover:to-amber-700 transition-all duration-300 transform hover:scale-[1.01] flex items-center justify-center gap-1.5 shadow-sm hover:shadow"
                     >
-                      <FaBookOpen className="text-xs" /> Explore Book
+                      <FaBookOpen className="text-xs" /> Notify Me When Available
                     </button>
                   </div>
                 </div>
               </div>
 
-              {/* Book 2 - Two Men in Love: The Crisis Year */}
+              {/* Book 2 - Two Men in Love: The Crisis Year (Available) */}
               <div className="group relative">
                 <div className="relative rounded-xl overflow-hidden shadow-md cursor-pointer transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white">
                   {/* Book Type Badge */}
                   <div className="absolute top-3 left-3 z-30 bg-gradient-to-r from-sky-500 to-sky-600 text-white text-[10px] px-2 py-1 rounded-full shadow-lg flex items-center gap-1">
-                    <FaBook className="text-[8px]" /> Physical
+                    <FaBook className="text-[8px]" /> Available Now
                   </div>
                   
                   {/* Rating Badge */}
@@ -400,12 +415,12 @@ function Home() {
                       <span className="text-[10px] bg-gray-100 text-gray-700 px-1.5 py-0.5 rounded-full">🏳️‍🌈 LGBTQ+</span>
                     </div>
                     
-                    {/* Action Button - Smaller */}
+                    {/* Action Button - Available */}
                     <button
-                      onClick={() => navigate(`/bookdetails/2`)}
+                      onClick={() => handleBookClick(allBooks[1])}
                       className="w-full py-2 bg-gradient-to-r from-sky-500 to-sky-600 text-white rounded-lg font-semibold text-sm hover:from-sky-600 hover:to-sky-700 transition-all duration-300 transform hover:scale-[1.01] flex items-center justify-center gap-1.5 shadow-sm hover:shadow"
                     >
-                      <FaBookOpen className="text-xs" /> Explore Book
+                      <FaBookOpen className="text-xs" /> Read Now
                     </button>
                   </div>
                 </div>
@@ -416,12 +431,12 @@ function Home() {
             <div className="mt-8 bg-gradient-to-r from-sky-100 to-blue-100 rounded-xl p-4 text-center shadow-sm">
               <div className="flex items-center justify-center gap-2 mb-1">
                 <FaHeart className="text-rose-500 text-sm" />
-                <span className="font-semibold text-gray-700 text-sm">Complete Series</span>
+                <span className="font-semibold text-gray-700 text-sm">Series Update</span>
                 <FaHeart className="text-rose-500 text-sm" />
               </div>
               <p className="text-gray-700 text-xs max-w-2xl mx-auto">
-                Experience the full emotional journey of love, resilience, and growth with both books in this acclaimed series. 
-                Perfect for readers who appreciate authentic LGBTQ+ romance.
+                Book 1 "Our Lives Together" is coming soon! Book 2 "The Crisis Year" is currently available. 
+                Sign up to be notified when Book 1 releases.
               </p>
               <div className="flex items-center justify-center gap-4 mt-2 text-xs text-gray-600">
                 <span className="flex items-center gap-1"><FaUsers className="text-sky-500 text-xs" /> 500+ Readers</span>
@@ -473,7 +488,7 @@ function Home() {
         </footer>
       </div>
       
-      {showPopup && <Popup onClose={() => setShowPopup(false)} />}
+      {showPopup && <Popup onClose={() => setShowPopup(false)} bookTitle={popupBookTitle} />}
 
       {/* Animations */}
       <style jsx>{`
