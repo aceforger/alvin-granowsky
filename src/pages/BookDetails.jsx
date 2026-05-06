@@ -19,7 +19,15 @@ import {
   FaImage,
   FaSpinner,
   FaHardHat,
-  FaMobileAlt
+  FaMobileAlt,
+  FaRainbow,
+  FaHeart,
+  FaStar,
+  FaRegHeart,
+  FaFeatherAlt,
+  FaHandHoldingHeart,
+  FaGlasses,
+  FaUsers
 } from 'react-icons/fa';
 import { Helmet } from 'react-helmet-async';
 
@@ -46,16 +54,9 @@ Katie's aunt is an ardent supporter of Reverend Phillips in his unrelenting cond
       { title: 'ALVIN GRANOWSKY', link: '/author/alvin-granowsky' },
       { title: 'The Teacher Accused Trilogy', link: '/series/teacher-accused' },
     ],
-    // Separate purchase links by format
-    paperbackPurchaseLinks: {
-      
-    },
-    hardcoverPurchaseLinks: {
-     
-    },
-    ebookPurchaseLinks: {
-      
-    },
+    paperbackPurchaseLinks: {},
+    hardcoverPurchaseLinks: {},
+    ebookPurchaseLinks: {},
     details: {
       publisher: 'Alvin Granowsky',
       language: 'English',
@@ -85,7 +86,6 @@ In a secondary theme, Ellen Thatcher, a school board member and mother of a gay 
       { title: 'ALVIN GRANOWSKY', link: '/author/alvin-granowsky' },
       { title: 'The Teacher Accused Trilogy', link: '/series/teacher-accused' },
     ],
-    // Separate purchase links by format
     paperbackPurchaseLinks: {
       fishpond: 'https://www.fishpond.com.au/Books/Two-Men-Love-Alvin-Granowsky/9798295758225?srsltid=AfmBOoqeFgZPeItgKCQ4L0Ogp6IrSU33Hpe58tlstg0qTXPduGiteZPb',
       barnesAndNoble: 'https://www.barnesandnoble.com/w/two-men-in-love-alvin-granowsky/1149817983',
@@ -103,7 +103,6 @@ In a secondary theme, Ellen Thatcher, a school board member and mother of a gay 
       bol: 'https://www.bol.com/be/fr/p/two-men-in-love/9300000272315844/',
       ibs: 'https://www.ibs.it/two-men-in-love-libro-inglese-alvin-granowsky/e/9798295758676?srsltid=AfmBOoqKgH70yUIhbDc60j6sWcPTI1F4hCLDxsy2gJp8XDtB5SQ0EcWY',
       buchfreund: 'https://www.buchfreund.de/de/neuware/kategorien/graphic-novel-comic-erwachsene?srsltid=AfmBOorSosZKduTPqvqquIjXnvA90Oqb1tNPQRQsIGcJg5U_fXNDiMcw',
-
     },
     ebookPurchaseLinks: {
       exlibris: 'https://www.exlibris.ch/de/buecher-buch/englische-ebooks/alvin-granowsky/two-men-in-love/id/9798295785399/?srsltid=AfmBOoq4kcwehf7Gfn_lKuSLJZPzoGh9vSQjyQ8vXRLUM4goOb7nN9dS',
@@ -147,7 +146,8 @@ const STORE_NAMES = {
   buchfreund: 'Buchfreund',
   bookscape: 'Bookscape',
   eurobooks: 'Eurobooks',
-  saxo: 'Saxo'
+  saxo: 'Saxo',
+  thriftbooks: 'ThriftBooks'
 };
 
 const getStoreName = (key) => {
@@ -167,43 +167,39 @@ const formatDate = (dateString) => {
   }
 };
 
-// Convert format-specific purchase links to array format
-const formatPurchaseLinks = (links) => {
-  if (!links) return [];
-  return Object.entries(links).map(([storeKey, url]) => ({
-    url,
-    store: getStoreName(storeKey),
-    format: 'paperback' // This will be set by the parent component
-  }));
-};
-
 // ============================================
-// Sub-Components
+// Sub-Components with Rainbow Pride Theme
 // ============================================
 
 const LoadingState = () => (
-  <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+  <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-purple-950 flex items-center justify-center">
     <div className="flex flex-col items-center gap-4">
-      <FaSpinner className="w-12 h-12 text-blue-600 animate-spin" />
-      <p className="text-slate-600 text-lg font-medium">Loading book details...</p>
+      <div className="relative">
+        <FaSpinner className="w-16 h-16 text-pink-500 animate-spin" />
+        <FaHeart className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-pink-300 text-sm animate-pulse" />
+      </div>
+      <p className="text-purple-200 text-lg font-medium">Loading your next read...</p>
+      <div className="flex gap-1">
+        {['pink', 'purple', 'indigo', 'blue'].map((color, i) => (
+          <div key={i} className={`w-2 h-2 rounded-full bg-${color}-400 animate-bounce`} style={{ animationDelay: `${i * 0.15}s` }}></div>
+        ))}
+      </div>
     </div>
   </div>
 );
 
 const ErrorState = ({ message, onRetry }) => (
-  <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center px-4">
+  <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-purple-950 flex items-center justify-center px-4">
     <div className="text-center max-w-md">
-      <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-        <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
+      <div className="w-24 h-24 bg-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-pink-500/30">
+        <FaHeart className="w-10 h-10 text-pink-400 animate-pulse" />
       </div>
-      <h2 className="text-xl font-semibold text-slate-800 mb-2">Unable to Load Book</h2>
-      <p className="text-slate-600 mb-6">{message}</p>
+      <h2 className="text-2xl font-semibold text-white mb-2">Oops! Something went wrong</h2>
+      <p className="text-gray-400 mb-6">{message}</p>
       {onRetry && (
         <button
           onClick={onRetry}
-          className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+          className="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white rounded-full transition-all duration-300 shadow-lg shadow-pink-500/20"
         >
           Try Again
         </button>
@@ -228,19 +224,19 @@ const BookSpecs = ({ details }) => {
   if (visibleSpecs.length === 0) return null;
 
   return (
-    <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
-      <h3 className="text-base font-semibold text-slate-800 mb-4 flex items-center gap-2">
-        <FaInfoCircle className="text-blue-600 text-sm" />
+    <div className="bg-gradient-to-br from-gray-900/50 to-gray-800/30 rounded-xl p-5 border border-purple-500/20 backdrop-blur-sm">
+      <h3 className="text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 mb-4 flex items-center gap-2">
+        <FaInfoCircle className="text-pink-400 text-sm" />
         Book Details
       </h3>
       <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
         {visibleSpecs.map(({ label, icon: Icon, value }) => (
           <React.Fragment key={label}>
-            <span className="text-slate-500 flex items-center gap-1.5">
-              <Icon className="text-slate-400 text-xs" />
+            <span className="text-gray-400 flex items-center gap-1.5">
+              <Icon className="text-purple-400 text-xs" />
               {label}:
             </span>
-            <span className="text-slate-700 font-mono text-sm break-all">{value}</span>
+            <span className="text-gray-200 font-mono text-sm break-all">{value}</span>
           </React.Fragment>
         ))}
       </div>
@@ -248,7 +244,7 @@ const BookSpecs = ({ details }) => {
   );
 };
 
-// Format-specific purchase buttons component
+// Format-specific purchase buttons component with Pride theme
 const FormatPurchaseSection = ({ title, icon: Icon, links, colorScheme }) => {
   const [expanded, setExpanded] = useState(false);
   const visibleLinks = expanded ? links : links.slice(0, 4);
@@ -256,33 +252,33 @@ const FormatPurchaseSection = ({ title, icon: Icon, links, colorScheme }) => {
   if (!links || links.length === 0) return null;
 
   const colorClasses = {
-    blue: {
-      bg: 'bg-blue-50',
-      border: 'border-blue-200',
-      title: 'text-blue-800',
-      button: 'bg-blue-600 hover:bg-blue-700',
-      icon: 'text-blue-600'
-    },
-    green: {
-      bg: 'bg-emerald-50',
-      border: 'border-emerald-200',
-      title: 'text-emerald-800',
-      button: 'bg-emerald-600 hover:bg-emerald-700',
-      icon: 'text-emerald-600'
+    pink: {
+      bg: 'bg-pink-500/10',
+      border: 'border-pink-500/30',
+      title: 'text-pink-300',
+      button: 'bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700',
+      icon: 'text-pink-400'
     },
     purple: {
-      bg: 'bg-purple-50',
-      border: 'border-purple-200',
-      title: 'text-purple-800',
-      button: 'bg-purple-600 hover:bg-purple-700',
-      icon: 'text-purple-600'
+      bg: 'bg-purple-500/10',
+      border: 'border-purple-500/30',
+      title: 'text-purple-300',
+      button: 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700',
+      icon: 'text-purple-400'
+    },
+    indigo: {
+      bg: 'bg-indigo-500/10',
+      border: 'border-indigo-500/30',
+      title: 'text-indigo-300',
+      button: 'bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700',
+      icon: 'text-indigo-400'
     }
   };
 
   const colors = colorClasses[colorScheme];
 
   return (
-    <div className={`${colors.bg} rounded-xl p-4 border ${colors.border} transition-all duration-200 hover:shadow-md`}>
+    <div className={`${colors.bg} rounded-xl p-4 border ${colors.border} transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10`}>
       <h4 className={`text-sm font-semibold ${colors.title} mb-3 flex items-center gap-2`}>
         <Icon className={colors.icon} />
         {title} ({links.length})
@@ -305,7 +301,7 @@ const FormatPurchaseSection = ({ title, icon: Icon, links, colorScheme }) => {
       {links.length > 4 && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-3 text-xs font-medium text-slate-600 hover:text-slate-800 flex items-center gap-1 transition-colors"
+          className="mt-3 text-xs font-medium text-gray-400 hover:text-pink-400 flex items-center gap-1 transition-colors"
         >
           {expanded ? (
             <>Show less <FaChevronUp className="text-xs" /></>
@@ -318,12 +314,7 @@ const FormatPurchaseSection = ({ title, icon: Icon, links, colorScheme }) => {
   );
 };
 
-const PurchaseOptions = ({ 
-  paperbackLinks, 
-  hardcoverLinks, 
-  ebookLinks 
-}) => {
-  // Convert links objects to arrays
+const PurchaseOptions = ({ paperbackLinks, hardcoverLinks, ebookLinks }) => {
   const paperbackArray = paperbackLinks ? Object.entries(paperbackLinks).map(([store, url]) => ({ store: getStoreName(store), url })) : [];
   const hardcoverArray = hardcoverLinks ? Object.entries(hardcoverLinks).map(([store, url]) => ({ store: getStoreName(store), url })) : [];
   const ebookArray = ebookLinks ? Object.entries(ebookLinks).map(([store, url]) => ({ store: getStoreName(store), url })) : [];
@@ -334,28 +325,28 @@ const PurchaseOptions = ({
 
   return (
     <div className="mb-6">
-      <h3 className="text-base font-semibold text-slate-800 mb-4 flex items-center gap-2">
-        <FaShoppingCart className="text-blue-600" />
-        Purchase Options
+      <h3 className="text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 mb-4 flex items-center gap-2">
+        <FaShoppingCart className="text-pink-400" />
+        Where to Buy
       </h3>
       <div className="space-y-3">
         <FormatPurchaseSection 
           title="Paperback"
           icon={FaBook}
           links={paperbackArray}
-          colorScheme="blue"
+          colorScheme="pink"
         />
         <FormatPurchaseSection 
           title="Hardcover"
           icon={FaHardHat}
           links={hardcoverArray}
-          colorScheme="green"
+          colorScheme="purple"
         />
         <FormatPurchaseSection 
           title="eBook"
           icon={FaMobileAlt}
           links={ebookArray}
-          colorScheme="purple"
+          colorScheme="indigo"
         />
       </div>
     </div>
@@ -366,15 +357,15 @@ const RelatedTopics = ({ topics }) => {
   if (!topics?.length) return null;
 
   return (
-    <div className="border-t border-slate-200 pt-5 mt-4">
+    <div className="border-t border-purple-500/20 pt-5 mt-4">
       <div className="flex flex-wrap gap-3">
         {topics.map((topic, index) => (
           <a
             key={index}
             href={topic.link}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 rounded-full text-sm text-slate-700 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-800/50 hover:bg-purple-500/20 rounded-full text-sm text-gray-300 hover:text-pink-400 transition-all duration-300 border border-purple-500/20"
           >
-            <FaLink className="text-slate-400 text-xs" />
+            <FaLink className="text-purple-400 text-xs" />
             {topic.title}
           </a>
         ))}
@@ -382,6 +373,15 @@ const RelatedTopics = ({ topics }) => {
     </div>
   );
 };
+
+// Pride Badge Component
+const PrideBadge = () => (
+  <div className="flex items-center gap-1 px-2 py-1 bg-gradient-to-r from-pink-500/20 via-purple-500/20 to-indigo-500/20 rounded-full">
+    <FaRainbow className="text-pink-400 text-xs" />
+    <span className="text-[10px] text-purple-200">LGBTQ+ Literature</span>
+    <FaHeart className="text-pink-400 text-[8px]" />
+  </div>
+);
 
 // ============================================
 // Main Component
@@ -457,117 +457,212 @@ const BookNewsDetails = () => {
   return (
     <>
       <Helmet>
-        <title>{`${book.title} by ${book.author} | Book Details`}</title>
+        <title>{`${book.title} by ${book.author} | LGBTQ+ Book Details`}</title>
         <meta name="description" content={book.description.substring(0, 160)} />
       </Helmet>
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Navigation */}
-          <nav className="mb-8">
-            <button
-              onClick={handleGoBack}
-              className="group inline-flex items-center gap-2 text-slate-600 hover:text-blue-600 transition-colors duration-200 text-sm font-medium"
-              aria-label="Go back to previous page"
-            >
-              <FaArrowLeft className="text-xs group-hover:-translate-x-0.5 transition-transform" />
-              <span>Back to Books</span>
-            </button>
-          </nav>
+      <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-purple-950">
+        {/* Animated Rainbow Background */}
+        <div className="fixed inset-0 opacity-20 pointer-events-none">
+          <div className="absolute inset-0 bg-gradient-to-r from-pink-600/20 via-purple-600/20 via-indigo-600/20 via-blue-600/20 via-green-600/20 via-yellow-600/20 to-red-600/20 animate-gradient-xy"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/30 via-transparent to-transparent"></div>
+        </div>
 
-          {/* Main Content Card */}
-          <article className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
-            {/* Header */}
-            <header className="bg-gradient-to-r from-slate-800 to-slate-700 px-6 py-6 md:px-8">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 font-serif tracking-tight">
-                {book.title}
-              </h1>
-              <div className="flex flex-wrap items-center gap-3 text-amber-200/90 text-sm">
-                <span className="flex items-center gap-1.5">
-                  <FaUser className="text-amber-300" />
-                  by {book.author}
-                </span>
-                <span className="w-1 h-1 bg-amber-200/50 rounded-full" />
-                <span className="flex items-center gap-1.5">
-                  <FaRegClock className="text-amber-300" />
-                  Published {formatDate(book.postDate)}
-                </span>
-              </div>
-            </header>
+        {/* Floating Pride Particles */}
+        <div className="fixed inset-0 overflow-hidden pointer-events-none">
+          {[...Array(15)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 rounded-full animate-float"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 8}s`,
+                animationDuration: `${8 + Math.random() * 15}s`,
+                background: `hsl(${Math.random() * 360}, 100%, 60%)`,
+                boxShadow: `0 0 8px hsl(${Math.random() * 360}, 100%, 60%)`
+              }}
+            />
+          ))}
+        </div>
 
-            {/* Content Body */}
-            <div className="p-6 md:p-8">
-              <div className="flex flex-col lg:flex-row gap-8">
-                {/* Book Cover */}
-                <div className="lg:w-2/5 xl:w-1/3">
-                  <div className="sticky top-8">
-                    <div className="relative group rounded-xl overflow-hidden shadow-lg bg-slate-100">
-                      {book.image ? (
-                        <img
-                          src={book.image}
-                          alt={`Cover of ${book.title}`}
-                          className="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="aspect-[2/3] flex items-center justify-center bg-slate-200">
-                          <FaImage className="w-12 h-12 text-slate-400" />
+        <div className="relative z-10 py-8 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto">
+            {/* Navigation */}
+            <nav className="mb-8">
+              <button
+                onClick={handleGoBack}
+                className="group inline-flex items-center gap-2 text-gray-400 hover:text-pink-400 transition-all duration-300 text-sm font-medium"
+                aria-label="Go back to previous page"
+              >
+                <FaArrowLeft className="text-xs group-hover:-translate-x-1 transition-transform" />
+                <span>Back to Books</span>
+              </button>
+            </nav>
+
+            {/* Main Content Card */}
+            <article className="bg-gradient-to-br from-gray-900/80 to-gray-800/50 backdrop-blur-sm rounded-2xl shadow-2xl overflow-hidden border border-purple-500/30">
+              {/* Header with Rainbow Gradient */}
+              <header className="relative bg-gradient-to-r from-pink-900/40 via-purple-900/40 to-indigo-900/40 px-6 py-6 md:px-8 overflow-hidden">
+                {/* Rainbow line */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-pink-500 via-purple-500 via-indigo-500 via-blue-500 to-green-500"></div>
+                
+                <div className="relative z-10">
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                    <PrideBadge />
+                    <div className="flex items-center gap-1 text-amber-400">
+                      <FaStar className="text-xs" />
+                      <FaStar className="text-xs" />
+                      <FaStar className="text-xs" />
+                      <FaStar className="text-xs" />
+                      <FaStar className="text-xs" />
+                      <span className="text-gray-400 text-xs ml-1">(4.9)</span>
+                    </div>
+                  </div>
+                  
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 font-serif">
+                    <span className="bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-300 bg-clip-text text-transparent">
+                      {book.title}
+                    </span>
+                  </h1>
+                  
+                  <div className="flex flex-wrap items-center gap-3 text-purple-200/80 text-sm">
+                    <span className="flex items-center gap-1.5">
+                      <FaUser className="text-pink-400" />
+                      by {book.author}
+                    </span>
+                    <span className="w-1 h-1 bg-purple-400/50 rounded-full" />
+                    <span className="flex items-center gap-1.5">
+                      <FaRegClock className="text-pink-400" />
+                      Published {formatDate(book.postDate)}
+                    </span>
+                  </div>
+                </div>
+              </header>
+
+              {/* Content Body */}
+              <div className="p-6 md:p-8">
+                <div className="flex flex-col lg:flex-row gap-8">
+                  {/* Book Cover with Pride Glow */}
+                  <div className="lg:w-2/5 xl:w-1/3">
+                    <div className="sticky top-8">
+                      <div className="relative group rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-pink-500/30">
+                        {/* Rainbow glow on hover */}
+                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                          <div className="absolute inset-0 bg-gradient-to-r from-pink-500/30 via-purple-500/30 to-indigo-500/30 rounded-xl blur-xl"></div>
                         </div>
+                        
+                        {book.image ? (
+                          <img
+                            src={book.image}
+                            alt={`Cover of ${book.title}`}
+                            className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105 relative z-10"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="aspect-[2/3] flex items-center justify-center bg-gray-800">
+                            <FaImage className="w-12 h-12 text-purple-500" />
+                          </div>
+                        )}
+                        
+                        {/* Pride heart overlay */}
+                        <div className="absolute bottom-3 right-3 bg-black/50 rounded-full p-1.5 backdrop-blur-sm z-20">
+                          <FaHeart className="text-pink-400 text-xs" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Book Details Panel */}
+                  <div className="lg:w-3/5 xl:w-2/3">
+                    {/* Synopsis */}
+                    <section className="mb-6">
+                      <h2 className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-300 to-purple-300 mb-3 font-serif flex items-center gap-2">
+                        <FaFeatherAlt className="text-pink-400 text-sm" />
+                        Synopsis
+                      </h2>
+                      <div className="prose prose-invert max-w-none">
+                        <p className="text-gray-300 leading-relaxed whitespace-pre-line text-sm md:text-base">
+                          {truncateDescription}
+                        </p>
+                      </div>
+                      {needsTruncation && (
+                        <button
+                          onClick={toggleDescription}
+                          className="mt-3 text-pink-400 hover:text-pink-300 text-sm font-medium flex items-center gap-1 transition-colors"
+                        >
+                          {expandedDescription ? (
+                            <>Show less <FaChevronUp className="text-xs" /></>
+                          ) : (
+                            <>Read more <FaChevronDown className="text-xs" /></>
+                          )}
+                        </button>
                       )}
+                    </section>
+
+                    {/* Quote with Pride styling */}
+                    {book.quote && (
+                      <aside className="bg-gradient-to-r from-pink-500/10 via-purple-500/10 to-indigo-500/10 rounded-xl p-5 mb-6 border-l-4 border-pink-400">
+                        <FaQuoteLeft className="text-pink-400 text-xl mb-2" />
+                        <p className="text-gray-200 italic text-sm md:text-base leading-relaxed">
+                          {book.quote}
+                        </p>
+                      </aside>
+                    )}
+
+                    {/* Book Specifications */}
+                    <BookSpecs details={book.details} />
+
+                    {/* Purchase Options */}
+                    <PurchaseOptions 
+                      paperbackLinks={book.paperbackPurchaseLinks}
+                      hardcoverLinks={book.hardcoverPurchaseLinks}
+                      ebookLinks={book.ebookPurchaseLinks}
+                    />
+
+                    {/* Related Topics */}
+                    <RelatedTopics topics={book.relatedTopics} />
+
+                    {/* Pride Message */}
+                    <div className="mt-6 pt-4 text-center">
+                      <div className="flex items-center justify-center gap-2 text-gray-500 text-xs">
+                        <FaRainbow className="text-pink-400" />
+                        <span>Celebrating LGBTQ+ Voices in Literature</span>
+                        <FaHeart className="text-red-400" />
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Book Details Panel */}
-                <div className="lg:w-3/5 xl:w-2/3">
-                  {/* Synopsis */}
-                  <section className="mb-6">
-                    <h2 className="text-xl font-semibold text-slate-800 mb-3 font-serif">Synopsis</h2>
-                    <div className="prose prose-slate max-w-none">
-                      <p className="text-slate-600 leading-relaxed whitespace-pre-line text-sm md:text-base">
-                        {truncateDescription}
-                      </p>
-                    </div>
-                    {needsTruncation && (
-                      <button
-                        onClick={toggleDescription}
-                        className="mt-3 text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-1 transition-colors"
-                      >
-                        {expandedDescription ? (
-                          <>Show less <FaChevronUp className="text-xs" /></>
-                        ) : (
-                          <>Read more <FaChevronDown className="text-xs" /></>
-                        )}
-                      </button>
-                    )}
-                  </section>
-
-                  {/* Quote */}
-                  {book.quote && (
-                    <aside className="bg-amber-50/80 rounded-xl p-5 mb-6 border-l-4 border-amber-400">
-                      <FaQuoteLeft className="text-amber-300 text-xl mb-2" />
-                      <p className="text-slate-700 italic text-sm md:text-base leading-relaxed">
-                        {book.quote}
-                      </p>
-                    </aside>
-                  )}
-
-                  {/* Book Specifications */}
-                  <BookSpecs details={book.details} />
-
-                  {/* Purchase Options - Using separate format-specific props */}
-                  <PurchaseOptions 
-                    paperbackLinks={book.paperbackPurchaseLinks}
-                    hardcoverLinks={book.hardcoverPurchaseLinks}
-                    ebookLinks={book.ebookPurchaseLinks}
-                  />
-
-                </div>
               </div>
-            </div>
-          </article>
+            </article>
+          </div>
         </div>
       </div>
+
+      {/* Custom Animations */}
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) translateX(0px); }
+          25% { transform: translateY(-20px) translateX(8px); }
+          75% { transform: translateY(15px) translateX(-8px); }
+        }
+        
+        @keyframes gradient-xy {
+          0%, 100% { background-position: 0% 0%; }
+          25% { background-position: 100% 0%; }
+          50% { background-position: 100% 100%; }
+          75% { background-position: 0% 100%; }
+        }
+        
+        .animate-float {
+          animation: float infinite ease-in-out;
+        }
+        
+        .animate-gradient-xy {
+          background-size: 400% 400%;
+          animation: gradient-xy 15s ease infinite;
+        }
+      `}</style>
     </>
   );
 };
