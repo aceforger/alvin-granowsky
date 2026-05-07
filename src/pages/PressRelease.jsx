@@ -17,7 +17,7 @@ const PressRelease = ({ pressData }) => {
         {
           id: 1,
           title: "Alvin Granowsky Introduces Two Men in Love: A Heartfelt Drama of Love, Loyalty, and Change",
-          date: "2024",
+          date: "2026",
           excerpt: "In his compelling novel Two Men in Love: The Crisis Year, Alvin Granowsky delivers a powerful story set during one of the most pivotal moments in modern American history. Taking place in 2015 — the year the Supreme Court of the United States ruled in favor of marriage equality — the novel follows Glen and Keith, a long-time couple raising two young sons in a conservative town outside Dallas.",
           fullContent: `
             <div class="press-content">
