@@ -79,8 +79,8 @@ const NavigationBar = () => {
             <div className="flex space-x-1 lg:space-x-2">
               <NavButton onClick={() => scrollToSection('hero')} icon={<FaHome />} label="Home" color="pink" />
               <NavButton onClick={() => scrollToSection('about')} icon={<FaUser />} label="About" color="purple" />
-              {/* <NavButton onClick={() => scrollToSection('featured-books')} icon={<FaBookOpen />} label="Books" color="indigo" />
-              <NavButton onClick={() => scrollToSection('contact')} icon={<FaEnvelope />} label="Contact" color="blue" /> */}
+              <NavButton onClick={() => scrollToSection('press')} icon={<FaBookOpen />} label="Press" color="indigo" />
+              {/* <NavButton onClick={() => scrollToSection('contact')} icon={<FaEnvelope />} label="Contact" color="blue" /> */}
             </div>
 
             {/* Pride heart decoration */}

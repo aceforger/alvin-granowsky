@@ -61,6 +61,7 @@ function AboutMe() {
   const navigate = useNavigate();
   const location = useLocation();
   const aboutRef = useRef(null);
+  const pressRef = useRef(null);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
@@ -342,6 +343,11 @@ function AboutMe() {
           </div>
         </div>
       </div>
+
+      {/* PRESS RELEASE SECTION - ADD THIS HERE */}
+<div id="press" ref={pressRef} className="max-w-7xl mx-auto px-5 py-5 relative z-10">
+  <PressRelease />
+</div>
 
       {/* Floating CTA Button with Pride Theme */}
       <div className="fixed bottom-8 right-8 flex flex-col gap-4 z-50">
