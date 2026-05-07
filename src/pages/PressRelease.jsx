@@ -233,11 +233,11 @@ const PressRelease = ({ pressData }) => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a 
-                href="mailto:algranowsky@hotmail.com" 
+                href="mailto:support@fulfill1st.com" 
                 className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-pink-600 to-purple-600 text-white font-medium rounded-lg hover:from-pink-500 hover:to-purple-500 transition-all duration-300 shadow-lg hover:shadow-pink-500/25"
               >
                 <FaEnvelope className="w-5 h-5 mr-2" />
-                algranowsky@hotmail.com
+                support@fulfill1st.com
               </a>
             </div>
             
