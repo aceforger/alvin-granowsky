@@ -83,9 +83,9 @@ function Home() {
   const [searchResults, setSearchResults] = useState([]);
   const [showSearchResults, setShowSearchResults] = useState(false);
 
-  // Updated book data with LGBTQ+ themes
+  // Updated book data with LGBTQ+ themes - Both books are now available
   const allBooks = [
-    { id: '1', title: "Our Lives Together: Two Men in Love", type: "book", image: "/images/live-together.png", path: "/bookdetails/1", status: "coming-soon" },
+    { id: '1', title: "Our Lives Together: Two Men in Love", type: "book", image: "/images/live-together.png", path: "/bookdetails/1", status: "available" },
     { id: '2', title: "Two Men in Love: The Crisis Year", type: "book", image: "/images/two-men.png", path: "/bookdetails/2", status: "available" },
   ];
 
@@ -352,7 +352,7 @@ function Home() {
           {/* Dual Book Showcase - Enhanced Dark Theme */}
           <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-              {/* Book 1 - Coming Soon with Pride Theme */}
+              {/* Book 1 - Now Available! */}
               <div className="group relative">
                 <div className="relative rounded-2xl overflow-hidden shadow-2xl cursor-pointer transform transition-all duration-500 hover:-translate-y-2 bg-gradient-to-br from-gray-900 to-gray-800 border border-pink-500/30">
                   {/* Rainbow Border on Hover */}
@@ -360,29 +360,30 @@ function Home() {
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-pink-500 via-purple-500 via-indigo-500 via-blue-500 via-green-500 to-yellow-500 opacity-30 blur-sm"></div>
                   </div>
                   
-                  {/* Book Type Badge */}
-                  <div className="absolute top-3 left-3 z-30 bg-gradient-to-r from-amber-500/90 to-amber-600/90 text-white text-[10px] px-2 py-1 rounded-full shadow-lg flex items-center gap-1 backdrop-blur-sm">
-                    <FaStar className="text-[8px] animate-pulse" /> Coming Soon
+                  {/* Book Type Badge - Now Available */}
+                  <div className="absolute top-3 left-3 z-30 bg-gradient-to-r from-pink-500 to-purple-500 text-white text-[10px] px-2 py-1 rounded-full shadow-lg flex items-center gap-1 backdrop-blur-sm">
+                    <FaBook className="text-[8px]" /> Available Now
+                  </div>
+                  
+                  {/* Rating Badge */}
+                  <div className="absolute top-3 right-3 z-30 bg-gradient-to-r from-amber-400 to-amber-500 text-amber-900 text-[10px] px-1.5 py-1 rounded-full shadow-lg flex items-center gap-0.5 font-semibold backdrop-blur-sm">
+                    <FaStar className="text-[8px]" /> 4.9 ★
                   </div>
                   
                   {/* LGBTQ+ Badge */}
-                  <div className="absolute top-3 right-3 z-30 bg-pink-500/80 text-white text-[10px] px-1.5 py-1 rounded-full shadow-lg flex items-center gap-0.5 font-semibold backdrop-blur-sm">
+                  {/* <div className="absolute bottom-3 left-3 z-30 bg-pink-500/80 text-white text-[10px] px-1.5 py-1 rounded-full shadow-lg flex items-center gap-0.5 font-semibold backdrop-blur-sm">
                     <FaHeart className="text-[8px]" /> LGBTQ+
-                  </div>
+                  </div> */}
                   
                   {/* Image Container */}
                   <div className="relative h-72 overflow-hidden bg-gradient-to-br from-amber-900/20 to-yellow-900/10">
                     <img
                       src="/images/live-together.png"
                       alt="Our Lives Together"
-                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 p-3 opacity-80"
+                      className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110 p-3"
                     />
-                    {/* Coming Soon Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950/60 via-transparent to-transparent flex items-center justify-center">
-                      <div className="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-2 rounded-full font-bold text-sm transform -rotate-12 shadow-xl">
-                        Coming Soon
-                      </div>
-                    </div>
+                    {/* Glow overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-gray-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   
                   {/* Book Details */}
@@ -398,17 +399,17 @@ function Home() {
                     
                     {/* Key Features */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      <span className="text-[10px] bg-purple-900/50 text-purple-200 px-2 py-0.5 rounded-full border border-purple-500/30">📖 TBA Pages</span>
+                      <span className="text-[10px] bg-purple-900/50 text-purple-200 px-2 py-0.5 rounded-full border border-purple-500/30">📖 284 Pages</span>
                       <span className="text-[10px] bg-pink-900/50 text-pink-200 px-2 py-0.5 rounded-full border border-pink-500/30">❤️ Romance</span>
                       <span className="text-[10px] bg-indigo-900/50 text-indigo-200 px-2 py-0.5 rounded-full border border-indigo-500/30">🏳️‍🌈 LGBTQ+</span>
                     </div>
                     
-                    {/* Action Button */}
+                    {/* Action Button - Now navigates to book details */}
                     <button
                       onClick={() => handleBookClick(allBooks[0])}
-                      className="w-full py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-full font-semibold text-sm hover:from-amber-600 hover:to-amber-700 transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20"
+                      className="w-full py-2.5 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full font-semibold text-sm hover:from-pink-600 hover:to-purple-600 transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg shadow-pink-500/30"
                     >
-                      <FaBell className="text-xs" /> Notify Me When Available
+                      <FaBookOpen className="text-xs" /> Read Now
                     </button>
                   </div>
                 </div>
@@ -477,13 +478,11 @@ function Home() {
             <div className="mt-10 bg-gradient-to-r from-pink-900/30 via-purple-900/30 to-indigo-900/30 rounded-2xl p-5 text-center shadow-xl border border-pink-500/20 backdrop-blur-sm">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <FaHeart className="text-pink-500 text-sm animate-pulse" />
-                <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 text-sm">Series Update</span>
+                <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400 text-sm">Series Complete</span>
                 <FaHeart className="text-purple-500 text-sm animate-pulse" />
               </div>
               <p className="text-gray-200 text-sm max-w-2xl mx-auto">
-                Book 1 <span className="text-amber-300">"Our Lives Together"</span> is coming soon! 
-                Book 2 <span className="text-pink-300">"The Crisis Year"</span> is currently available. 
-                Sign up to be notified when Book 1 releases.
+                Both books in the series are now available! Start with <span className="text-pink-300">"Our Lives Together: Two Men in Love"</span> and continue with the sequel <span className="text-purple-300">"The Crisis Year"</span>. Experience the complete journey of love and resilience.
               </p>
               <div className="flex items-center justify-center gap-6 mt-3 text-xs text-gray-300">
                 <span className="flex items-center gap-1"><FaUsers className="text-pink-400 text-xs" /> 500+ Readers</span>

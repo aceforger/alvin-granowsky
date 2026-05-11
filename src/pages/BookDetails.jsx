@@ -54,19 +54,30 @@ Katie's aunt is an ardent supporter of Reverend Phillips in his unrelenting cond
       { title: 'ALVIN GRANOWSKY', link: '/author/alvin-granowsky' },
       { title: 'The Teacher Accused Trilogy', link: '/series/teacher-accused' },
     ],
-    paperbackPurchaseLinks: {},
-    hardcoverPurchaseLinks: {},
-    ebookPurchaseLinks: {},
+    paperbackPurchaseLinks: 
+    {
+      hugendubel: 'https://www.hugendubel.de/de/taschenbuch/alvin_granowsky-our_lives_together-53273871-produkt-details.html?srsltid=AfmBOooQ6VoMx81iHYzINQQjwgjZUvBR-UWPhc5FulZMfHe8TJvp_k3k'
+    },
+    hardcoverPurchaseLinks: 
+    {
+      walmart: 'https://www.walmart.com/ip/Our-Live-Together-Two-Men-in-Love-Hardcover/20170802883',
+    },
+    ebookPurchaseLinks: 
+    {
+      bol: 'https://www.bol.com/nl/nl/p/oue-lives-together/9300000284049264/',
+      rakuten: 'https://books.rakuten.co.jp/rk/b43e7f025efd3363870eff9c1b8023cb/'
+
+    },
     details: {
       publisher: 'Alvin Granowsky',
       language: 'English',
       printLength: '220 pages',
       isbn10: '149172806X',
-      isbn13: '978-1491728062',
+      isbn13: '9798295856266',
       formats: {
-        paperback: '978-1491728062',
-        hardcover: '978-1491728079',
-        ebook: '978-1491728086'
+        paperback: '9798295855160',
+        hardcover: '9798295856266',
+        ebook: '9798295874765'
       }
     }
   },
@@ -147,7 +158,8 @@ const STORE_NAMES = {
   bookscape: 'Bookscape',
   eurobooks: 'Eurobooks',
   saxo: 'Saxo',
-  thriftbooks: 'ThriftBooks'
+  thriftbooks: 'ThriftBooks',
+  rakuten: 'Rakuten'
 };
 
 const getStoreName = (key) => {
